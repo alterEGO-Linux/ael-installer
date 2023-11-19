@@ -1,0 +1,12 @@
+.gitignore
+LICENSE
+README.md
+setup.py
+AELinstaller/__init__.py
+AELinstaller/sayhi.py
+ael_installer.egg-info/PKG-INFO
+ael_installer.egg-info/SOURCES.txt
+ael_installer.egg-info/dependency_links.txt
+ael_installer.egg-info/entry_points.txt
+ael_installer.egg-info/requires.txt
+ael_installer.egg-info/top_level.txt

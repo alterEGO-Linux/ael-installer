@@ -1,0 +1,2 @@
+[console_scripts]
+ael-installer = AELinstaller.sayhi:main
