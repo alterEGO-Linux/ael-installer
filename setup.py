@@ -17,13 +17,13 @@ class CustomInstallCommand(install):
         ael_directory_path = '/usr/share/ael'
         os.makedirs(ael_directory_path, exist_ok=True)
         # Add your logic to download the data from the Git repository
-        # subprocess.check_call(['git', 'clone', 'https://github.com/alterEGO-Linux/ael-files.git', '/usr/share/ael/files'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/alterEGO-Linux/ael-files.git', '/usr/share/ael/files'])
         # Continue with the default installation process
         install.run(self)
 
 setup(
     name='ael-installer',
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(),
     install_requires=[
         'toml',
@@ -35,12 +35,7 @@ setup(
         'console_scripts': [
             'ael-installer = AELinstaller.sayhi:main',
         ],
-    }#,
-    # scripts=['scripts/your_module'],
-    # data_files=[('/usr/share/man/man1', ['man/your_module.1'])],
-    # package_data={
-        # 'your_package': ['config/your_config.toml'],
-    # },
+    },
 )
 
 # vim: foldmethod=marker
