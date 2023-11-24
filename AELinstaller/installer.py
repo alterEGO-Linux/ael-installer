@@ -12,6 +12,7 @@ import shlex
 import shutil
 import subprocess
 import time
+import tomllib
 
 ## Checking privileges.
 if os.getenv('USER') == 'root':
@@ -63,14 +64,32 @@ FILES_PATH = '/usr/share/ael/cache/files'
 
 def get_files():
     if os.path.isdir(FILES_PATH):
-        message('warning', f'{FILES_PATH} already exists')
+        message('action', f'Found {FILES_PATH}')
+        message('results', f'Updating AEL files...')
+        execute(f"git pull", cwd=FILES_PATH)
     else:
         message('action', f"Downloading AEL files...")
         execute(f"git clone {FILES_URL} {FILES_PATH}")
 
+## -------------------- [ FILES ] 
+
+def copy_files():
+    FILES_CONFIG = os.path.join(FILES_PATH, 'usr', 'share', 'ael', 'files.toml')
+
+    with open(FILES_CONFIG, 'rb') as _input:
+        data = tomllib.load(_input)
+
+        ## Convert dict of dict to namedtuple
+        AELFiles = namedtuple('AELFiles', ['filename', 'src', 'dst', 'description', 'mode', 'is_symlink'])
+        files_list = [AELFiles(**values) for values in data['file']['general'].values()]
+
+        for f in files_list:
+            print(f.filename)
+
 if __name__ == '__main__':
 
     get_files()
+    copy_files()
 
 # vim: foldmethod=marker
 ## ------------------------------------------------------------- FIN ¯\_(ツ)_/¯
