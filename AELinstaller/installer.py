@@ -2,7 +2,7 @@
 ## [AELinstaller/installer.py]
 ## author        : fantomH @alerEGO Linux
 ## created       : 2023-11-20 00:23:25 UTC
-## updated       : 2023-11-20 00:23:25 UTC
+## updated       : 2023-11-26 14:27:16 UTC
 ## description   : Installer and Updater.
 
 import argparse
@@ -80,11 +80,28 @@ def copy_files():
         data = tomllib.load(_input)
 
         ## Convert dict of dict to namedtuple
-        AELFiles = namedtuple('AELFiles', ['filename', 'src', 'dst', 'description', 'mode', 'is_symlink'])
-        files_list = [AELFiles(**values) for values in data['file']['general'].values()]
+        AELFiles = namedtuple('AELFiles', ['filename', 'category', 'src', 'dst', 'description', 'mode', 'is_symlink', 'create_bkp'])
+        files_list = [AELFiles(**values) for values in data['file'].values()]
 
         for f in files_list:
-            print(f.filename)
+            if f.src == 'FILESGIT':
+                _src = FILES_PATH + os.path.join(f.dst, f.filename)
+            else:
+                _src = os.path.join(f.src, f.filename)
+
+            _dst = os.path.join(f.dst, f.filename)
+
+            os.makedirs(f.dst, exist_ok = True)
+            if f.create_bkp == True:
+                pass
+            else:
+                if os.path.exists(_dst):
+                    os.remove(_dst)
+                    message('results', f'Copying {_dst}...')
+                    shutil.copy2(_src, _dst)
+                else:
+                    message('results', f'Copying {_dst}...')
+                    shutil.copy2(_src, _dst)
 
 if __name__ == '__main__':
 
