@@ -3,7 +3,7 @@
 ## [AELinstaller/generate_firefox_policies.py]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-12-04 19:57:47 UTC
-## updated       : 2023-12-04 19:57:47 UTC
+## updated       : 2023-12-07 11:58:37 UTC
 ## description   : Generates bookmarks (dev)
 
 # import os
@@ -138,6 +138,7 @@ firefox_policies = {
 
 for x in ["Converters",
           "CyberTraining", 
+          "Information",
           "References",
           "Resources",
           "Search",
