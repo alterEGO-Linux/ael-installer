@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 ## ----------------------------------------------------------------------- INFO
-## [AELinstaller/generate_firefox_policies.py]
+## [AELarchitect/firefox_policies.py]
 ## author        : fantomH @alterEGO Linux
 ## created       : 2023-12-04 19:57:47 UTC
-## updated       : 2023-12-07 11:58:37 UTC
-## description   : Generates bookmarks (dev)
+## updated       : 2023-12-07 20:15:07 UTC
+## description   : Generates Firefox policies.json
 
 # import os
 import sqlite3 as sql
